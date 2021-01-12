@@ -20,6 +20,8 @@ class CartavelServiceProvider extends ServiceProvider
             }
         );
 
+        $this->loadHelpers();
+
         //$this->_registerPublishableResources();
 
     }
@@ -42,6 +44,14 @@ class CartavelServiceProvider extends ServiceProvider
     public function provides()
     {
         return ['cartavel'];
+    }
+
+
+    protected function loadHelpers()
+    {
+        foreach (glob(__DIR__ . '/Helpers/*.php') as $filename) {
+            include_once $filename;
+        }
     }
 
     private function _registerPublishableResources()
