@@ -1,0 +1,26 @@
+{
+    "name": "macbook/cartavel",
+    "description": "E-commerce cart system",
+    "keywords": ["laravel", "cart", "e-commerce"],
+    "license": "MIT",
+    "authors": [{
+        "name": "a4anthony",
+        "email": "anthonygakro@gmail.com"
+    }],
+    "require": {},
+    "autoload": {
+        "psr-4": {
+            "A4anthony\\Cartavel\\": "src/"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "\\A4anthony\\Cartavel\\CartavelServiceProvider"
+            ],
+            "aliases": {
+                "Cartavel": "A4anthony\\Cartavel\\Facades\\Cartavel"
+            }
+        }
+    }
+}
