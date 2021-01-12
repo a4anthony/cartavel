@@ -19,6 +19,9 @@ class CartavelServiceProvider extends ServiceProvider
                 return new Cartavel;
             }
         );
+
+        //$this->_registerPublishableResources();
+
     }
 
     /**
@@ -28,6 +31,10 @@ class CartavelServiceProvider extends ServiceProvider
      */
     public function boot()
     {
+        $this->loadMigrationsFrom(__DIR__ . '/Migrations');
+        $this->publishes([
+            __DIR__.'/Migrations/' => database_path('migrations')
+        ], 'migrations');
         include __DIR__.'/routes.php';
     }
 
@@ -35,5 +42,12 @@ class CartavelServiceProvider extends ServiceProvider
     public function provides()
     {
         return ['cartavel'];
+    }
+
+    private function _registerPublishableResources()
+    {
+        $this->publishes([
+            __DIR__.'/Migrations/' => database_path('migrations')
+        ], 'migrations');
     }
 }
