@@ -21,7 +21,18 @@ class CartavelController extends Controller
      */
     public function hello()
     {
-       return Cartavel::hello();
+       // //Cartavel::add(1,13,69);
+       // $cartItems = Cartavel::get(1,true);
+       // dd($cartItems);
+       //
+       // Cartavel::delete(1,14);
+       // //Cartavel::add(1,14,69);
+       // //Cartavel::add(1,15,69);
+       // //Cartavel::add(1,131,69);
+       // //Cartavel::add(1,133,69);
+       // //Cartavel::add(1,134,69);
+       // //Cartavel::add(1,1334,69);
+       //return Cartavel::hello();
     }
 
 }
