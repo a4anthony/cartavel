@@ -12,16 +12,30 @@ class CartTableSeeder extends Seeder
      */
     public function run()
     {
-        $maxItems = 10;
-        $users = User::all();
+        $productsCount = DB::table(config('cartavel.items_table_name'))->count();
+
+        if ($productsCount > 10) {
+            $maxItems = 10;
+        } else {
+            $maxItems = $productsCount;
+        }
+
+        $users = DB::table(config('cartavel.users_table_name'))->get();
+
         Cart::truncate();
+
         foreach ($users as $user) {
-            for ($i = 1; $i <= $maxItems; $i++) {
-                Cart::create([
-                    'user_id' => $user->id,
-                    'item_id' => $i,
-                    'quantity' => random_int(1, 50)
-                ]);
+            $products = DB::table(config('cartavel.items_table_name'))
+                ->inRandomOrder()
+                ->take($maxItems)
+                ->get();
+
+            foreach ($products as $product) {
+                $cartItem = new Cart();
+                $cartItem->user_id = $user->id;
+                $cartItem->item_id = $product->{config('cartavel.items_table_unique_column')};
+                $cartItem->quantity = random_int(1, 50);
+                $cartItem->save();
             }
         }
     }
