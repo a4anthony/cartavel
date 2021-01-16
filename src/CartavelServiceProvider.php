@@ -68,6 +68,9 @@ class CartavelServiceProvider extends ServiceProvider
         $publishablePath = dirname(__DIR__) . '/';
 
         $publishable = [
+            'config' => [
+                "{$publishablePath}/src/config/cartavel.php" => config_path('cartavel.php'),
+            ],
             'seeds' => [
                 "{$publishablePath}/src/DummyDatabase/seeds/" => database_path('seeders'),
                 "{$publishablePath}/src/DummyDatabase/dummy_seeds/" => database_path('seeders'),
