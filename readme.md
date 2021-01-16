@@ -6,7 +6,7 @@
 <a href="https://packagist.org/packages/a4anthony/cartavel"><img src="https://poser.pugx.org/a4anthony/cartavel/license.svg?format=flat" alt="License"></a>
 </p>
 
-##Prerequisite
+## Prerequisite
 To use this package, migration files for users and items/inventory/products table must have been set up.
 
 ## Installation Steps
