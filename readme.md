@@ -133,7 +133,8 @@ Cartavel::delete($userId, $itemId); //deletes item from user's cart
 
 Cartavel::clear($userId); //clears user's cart
 ```
-###ENJOY!!!
+
+##ENJOY!!!
 
 # Contributing
 
