@@ -1,5 +1,6 @@
 <?php
 
+namespace A4anthony\Cartavel;
 
 use A4anthony\Cartavel\Models\Cart;
 use Illuminate\Http\Exceptions\HttpResponseException;
