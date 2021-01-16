@@ -39,7 +39,6 @@ class Seed extends Command
      */
     public function handle()
     {
-        dd(config('cartavel'));
         $this->info('Publishing dummy content');
         $tags = ['seeds'];
         $this->call('vendor:publish', ['--provider' => CartavelServiceProvider::class, '--tag' => $tags, '--force' => true]);
