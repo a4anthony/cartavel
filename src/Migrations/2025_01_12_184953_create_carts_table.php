@@ -18,7 +18,7 @@ class CreateCartsTable extends Migration
             $table->unsignedBigInteger('user_id');
             $table->foreign('user_id')
                 ->references(config('cartavel.users_table_unique_column'))
-                ->on(config('cartavel.cart_table_name'))
+                ->on(config('cartavel.users_table_name'))
                 ->onDelete('cascade');
             $table->unsignedBigInteger('item_id');
             $table->foreign('item_id')

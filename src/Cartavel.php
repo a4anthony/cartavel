@@ -37,13 +37,11 @@ class Cartavel
      * @throws Exception
      * @author Anthony Akro <anthonygakro@gmail.com> [a4anthony]
      */
-    public function get(int $userId, bool $paginate = false)
+    public function get(int $userId, bool $paginate = true)
     {
         if ($userId < 0) {
             negativeArgs();
         }
-
-        checkUserInCart($userId);
 
         $cartItems = Cart::where('user_id', $userId);
 
@@ -86,17 +84,17 @@ class Cartavel
             throw new Exception('User already has item in cart');
         }
 
-        $cart = Cart::create([
-            'user_id' => $userId,
-            'item_id' => $itemId,
-            'quantity' => $quantity,
-        ]);
+        $cartItem = new Cart();
+        $cartItem->user_id = $userId;
+        $cartItem->item_id = $itemId;
+        $cartItem->quantity = $quantity;
+        $cartItem->save();
 
         if (request()->wantsJson()) {
-            return response()->json($cart, 200);
+            return response()->json($cartItem, 200);
         }
 
-        return $cart;
+        return $cartItem;
     }
 
     /**
@@ -116,11 +114,11 @@ class Cartavel
         if ($userId < 0 || $itemId < 0 || $quantity < 0) {
             negativeArgs();
         }
-        checkItemInCart($userId, $itemId);
 
         $cart = Cart::where([['user_id', $userId], ['item_id', $itemId]])->update([
             'quantity' => $quantity
         ]);
+
         if (request()->wantsJson()) {
             return response()->json($cart, 200);
         }
@@ -144,7 +142,6 @@ class Cartavel
         if ($userId < 0 || $itemId < 0) {
             negativeArgs();
         }
-        checkItemInCart($userId, $itemId);
 
         Cart::where([['user_id', $userId], ['item_id', $itemId]])->delete();
 
@@ -172,8 +169,6 @@ class Cartavel
             negativeArgs();
         }
 
-        checkUserInCart($userId);
-
         Cart::where('user_id', $userId)->delete();
 
         if (request()->wantsJson()) {
@@ -181,5 +176,6 @@ class Cartavel
                 'message' => 'Cart cleared'
             ], 200);
         }
+
     }
 }
